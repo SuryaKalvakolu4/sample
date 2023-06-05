@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz App</title>
+    <style>
+        body {
+            background-color: #f1f1f1;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .question {
+            margin: 20px;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Quiz</h1>
+
+    <div class="question">
+        <h3>Question 1:</h3>
+        <p>What is the capital of France?</p>
+        <input type="radio" name="q1" value="option1">Option 1<br>
+        <input type="radio" name="q1" value="option2">Option 2<br>
+        <input type="radio" name="q1" value="option3">Option 3<br>
+        <button onclick="checkAnswer('q1')">Submit</button>
+    </div>
+
+    <script>
+        function checkAnswer(question) {
+            const selectedOption = document.querySelector(`input[name=${question}]:checked`);
+
+            if (selectedOption) {
+                const answer = selectedOption.value;
+                let score = parseInt(localStorage.getItem('score')) || 0;
+
+                if (answer === 'option1') {
+                    score += 1;
+                }
+
+                localStorage.setItem('score', score);
+                alert(`Your score is: ${score}`);
+            } else {
+                alert('Please select an option');
+            }
+        }
+    </script>
+</body>
+</html>
+This code creates three questions with multiple-choice options. When the user clicks the "Submit" button for each question, it checks if an option is selected and updates the score accordingly. The score is stored in the local storage, and an alert is shown with the current score. The CSS styling includes a centered heading and a light gray background for the page. Each question is styled with a white background, a border, and some padding.
+
+Feel free to customize the questions, options, and styling to fit your needs.
+
+
+
+
+
+
+
+</head>
+<body>
+    <h1>Quiz App</h1>
+    <div id="question"></div>
+    <div id="options"></div>
+    <button onclick="nextQuestion()">Next</button>
+    <script>
+        // Quiz questions and answers
+        const quiz = [
+            {
+                question: "What is the capital of France?",
+                options: ["Paris", "London", "Berlin"],
+                answer: 0
+            },
+            {
+                question: "What is the largest planet in our solar system?",
+                options: ["Jupiter", "Saturn", "Neptune"],
+                answer: 0
+            },
+            {
+                question: "What is the chemical symbol for gold?",
+                options: ["Ag", "Au", "Cu"],
+                answer: 1
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score1 = 0;
+
+        // Function to display current question
+        function displayQuestion() {
+            const questionElement = document.getElementById("question");
+            const optionsElement = document.getElementById("options");
+            const current = quiz[currentQuestion];
+
+            questionElement.textContent = current.question;
+            optionsElement.innerHTML = "";
+
+            // Loop through options and create radio buttons
+            for (let i = 0; i < current.options.length; i++) {
+                const option = document.createElement("input");
+                option.type = "radio";
+                option.name = "option";
+                option.value = i;
+
+                const label = document.createElement("label");
+                label.textContent = current.options[i];
+
+                optionsElement.appendChild(option);
+                optionsElement.appendChild(label);
+                optionsElement.appendChild(document.createElement("br"));
+            }
+        }
+
+        // Function to check the answer and update score
+        function checkAnswer() {
+            const options = document.getElementsByName("option");
+            let selectedOption = -1;
+
+            for (let i = 0; i < options.length; i++) {
+                if (options[i].checked) {
+                    selectedOption = parseInt(options[i].value);
+                    break;
+                }
+            }
+
+            if (selectedOption === quiz[currentQuestion].answer) {
+                score1++;
+            }
+        }
+
+        // Function to move to the next question
+        function nextQuestion() {
+            checkAnswer();
+            currentQuestion++;
+
+            if (currentQuestion === quiz.length) {
+                // All questions answered, store score in local storage
+                localStorage.setItem("score1", score1);
+                alert("Quiz completed. Your score is " + score1);
+            } else {
+                displayQuestion();
+            }
+        }
+
+        displayQuestion();
+    </script>
+</body>
+</html>
