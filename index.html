@@ -26,51 +26,7 @@
     </style>
 </head>
 <body>
-    <h1>Quiz</h1>
-
-    <div class="question">
-        <h3>Question 1:</h3>
-        <p>What is the capital of France?</p>
-        <input type="radio" name="q1" value="option1">Option 1<br>
-        <input type="radio" name="q1" value="option2">Option 2<br>
-        <input type="radio" name="q1" value="option3">Option 3<br>
-        <button onclick="checkAnswer('q1')">Submit</button>
-    </div>
-
-    <script>
-        function checkAnswer(question) {
-            const selectedOption = document.querySelector(`input[name=${question}]:checked`);
-
-            if (selectedOption) {
-                const answer = selectedOption.value;
-                let score = parseInt(localStorage.getItem('score')) || 0;
-
-                if (answer === 'option1') {
-                    score += 1;
-                }
-
-                localStorage.setItem('score', score);
-                alert(`Your score is: ${score}`);
-            } else {
-                alert('Please select an option');
-            }
-        }
-    </script>
-</body>
-</html>
-This code creates three questions with multiple-choice options. When the user clicks the "Submit" button for each question, it checks if an option is selected and updates the score accordingly. The score is stored in the local storage, and an alert is shown with the current score. The CSS styling includes a centered heading and a light gray background for the page. Each question is styled with a white background, a border, and some padding.
-
-Feel free to customize the questions, options, and styling to fit your needs.
-
-
-
-
-
-
-
-</head>
-<body>
-    <h1>Quiz App</h1>
+    <h1>360 Degree Room Quiz</h1>
     <div id="question"></div>
     <div id="options"></div>
     <button onclick="nextQuestion()">Next</button>
@@ -78,19 +34,9 @@ Feel free to customize the questions, options, and styling to fit your needs.
         // Quiz questions and answers
         const quiz = [
             {
-                question: "What is the capital of France?",
-                options: ["Paris", "London", "Berlin"],
+                question: "What type of deacidification was performed until the mid-1950s?",
+                options: ["Chemical deacidification", "Physical deacidification"],
                 answer: 0
-            },
-            {
-                question: "What is the largest planet in our solar system?",
-                options: ["Jupiter", "Saturn", "Neptune"],
-                answer: 0
-            },
-            {
-                question: "What is the chemical symbol for gold?",
-                options: ["Ag", "Au", "Cu"],
-                answer: 1
             }
         ];
 
